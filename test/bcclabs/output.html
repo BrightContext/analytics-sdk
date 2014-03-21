@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>web analytics output</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+
+    <!--[if lt IE 8]>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome-ie7.css" rel="stylesheet">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js "></script>
+    <![endif]-->
+
+    <!--[if IE]
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/1.2.4/es5-shim.min.js"></script>
+    <![endif]-->
+
+    <!--
+    <link rel="shortcut icon" href="ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+    -->
+
+    <!--
+    <meta name="msapplication-TileColor" content="#123456"/>
+    <meta name="msapplication-TileImage" content="ico/ms-tile-icon.png"/>
+    -->
+
+    <style>
+    .row {
+      font-family: monospace;
+      font-size: 8pt;
+      white-space: pre;
+      display: block;
+      margin-top: 1em;
+      border-top: 1px solid gray;
+    }
+    </style>
+  </head>
+
+<!--[if IE 6]><body class="ie ie6"><![endif]-->
+<!--[if IE 7]><body class="ie ie7"><![endif]-->
+<!--[if IE 8]><body class="ie ie8"><![endif]-->
+<!--[if IE 9]><body class="ie ie9"><![endif]-->
+<!--[if IE 10]><body class="ie ie10"><![endif]-->
+<!--[if gt IE 10]><body class="ie"><![endif]-->
+<!--[if !IE ]><!--><body><!--<![endif]-->
+
+
+
+    <div class="container">
+      <div class="grid log-table">
+
+      </div>
+    </div> <!-- /container -->
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+
+    <script src="http://static.bcclabs.com/js-sdk/bcc.min.js"></script>
+
+    <script type="text/javascript">
+
+    // pre-defined input stuff would be code-genned
+    var ctx = BCC.init('0d28ce45-c9a4-46ad-af53-d9823c515a0e');
+
+
+    // test output
+
+    // TODO: group by clicks, hits, and visitors by adkey
+    //
+    // use power quant channel and mdManager.getParameter()
+    //
+    // hits per minute by adkey1
+    // concurrent per minute by adkey1
+
+    var project = ctx.project('analytics');
+    var logfeedmsg = function (f, m) {
+
+      console.dir(m);
+
+      var logentry = $('<div>').addClass('row');
+      logentry.text(JSON.stringify(m, null, '\t'));
+      $('.log-table').prepend(logentry);
+
+      var rows = $('.row');
+      var numrows = rows.length;
+      if (numrows > 50) {
+        rows[numrows-1].remove();
+      }
+    };
+
+    project.feed({
+      channel: 'daservlettest',
+      name: 'o',
+      onmsgreceived: logfeedmsg
+    });
+
+    </script>
+
+  </body>
+</html>

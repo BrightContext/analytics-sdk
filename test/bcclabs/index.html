@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>web analytics example</title>
+
+    <link rel="canonical" href="http://localhost:8081/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+
+    <!--[if lt IE 8]>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome-ie7.css" rel="stylesheet">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js "></script>
+    <![endif]-->
+
+    <!--[if IE]
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/1.2.4/es5-shim.min.js"></script>
+    <![endif]-->
+
+    <!--
+    <link rel="shortcut icon" href="ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+    -->
+
+    <!--
+    <meta name="msapplication-TileColor" content="#123456"/>
+    <meta name="msapplication-TileImage" content="ico/ms-tile-icon.png"/>
+    -->
+
+    <style>
+    </style>
+  </head>
+
+<!--[if IE 6]><body class="ie ie6"><![endif]-->
+<!--[if IE 7]><body class="ie ie7"><![endif]-->
+<!--[if IE 8]><body class="ie ie8"><![endif]-->
+<!--[if IE 9]><body class="ie ie9"><![endif]-->
+<!--[if IE 10]><body class="ie ie10"><![endif]-->
+<!--[if gt IE 10]><body class="ie"><![endif]-->
+<!--[if !IE ]><!--><body><!--<![endif]-->
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a id="#brand" class="brand" href="#/">
+            Brand
+          </a>
+          <ul class="nav">
+            <li>
+              <a href="#/link1">
+                Link 1
+              </a>
+            </li>
+            <li>
+              <a href="#/link2">
+                Link 2
+              </a>
+            </li>
+            <li>
+              <a href="#/link3">
+                Link 3
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <ul class="breadcrumb">
+      <li class="">
+        <a href="#/root">
+          Root
+        </a>
+      </li>
+      <span class="divider">
+        /
+      </span>
+      <li class="">
+        <a href="#/root/subfolder">
+          Sub folder
+        </a>
+      </li>
+      <span class="divider">
+        /
+      </span>
+      <li class="">
+        <a href="#/root/subfolder/leafnode">
+          Leaf Node
+        </a>
+      </li>
+    </ul>
+
+    <div class="container">
+      <div class="grid">
+
+        <div class="row">
+          <div class="span4">
+            <h3>
+              Heading 1  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn btn-warning"
+              href="#/grid1"
+              data-bcc-milestone-name="warning">
+              Track Warning Data
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 2  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn btn-success" href="#/grid2">
+              Track Success with Detail Object
+            </a>
+          </div>
+          <div class="span4 track-hover">
+            <h3>
+              Hover Test  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid3">
+              Click Me
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span4">
+            <h3>
+              Heading 1  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid1">
+              Click Me
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 2  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid2">
+              Click Me
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 3  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid3">
+              Click Me
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span4">
+            <h3>
+              Heading 1  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <form id="userinfoform" class="form">
+                <label for="username">Name</label>
+                <input type="text" name="username" id="username">
+                <label for="gender">Gender</label>
+                <input type="text" name="gender" id="gender">
+                <label for="age">Age</label>
+                <input type="text" name="age" id="age">
+              </form>
+            </div>
+            <a class="btn" href="#/grid1" id="saveidentity">
+              Save As User Identity
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              <span class="special" id="somethingspecial">Special Heading 2</span>  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid2">
+              Click Me
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 3  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid3">
+              Click Me
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span4">
+            <h3>
+              Heading 1  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid1">
+              Click Me
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 2  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid2">
+              Click Me
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 3  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid3">
+              Click Me
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span4">
+            <h3>
+              Heading 1  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid1">
+              Click Me
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 2  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid2">
+              Click Me
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 3  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid3">
+              Click Me
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span4">
+            <h3>
+              Heading 1  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid1" data-bcc-milestone-name="buy">
+              Track Buy Event
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 2  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid2" id="cartbutton">
+              Track Cart Event
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 3  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid3">
+              Click Me
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span4">
+            <h3>
+              Heading 1  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid1">
+              Click Me
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 2  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a class="btn" href="#/grid2">
+              Click Me
+            </a>
+          </div>
+          <div class="span4">
+            <h3>
+              Heading 3  <img src="http://placehold.it/350x150">
+            </h3>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <a id="dangerbutton" class="btn btn-danger" href="/">
+              Click Me To Reload Page
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div> <!-- /container -->
+
+    <footer class="container">
+      <hr>
+      <div class="muted">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+
+    <script src="//static.bcclabs.com/analytics-sdk/bcc-analytics.min.js"></script>
+
+    <script>
+
+    // pre-defined input stuff would be code-genned
+
+    // no movement
+    //
+    // BCC.Analytics.init('a29d6bd51392237990223');
+
+    // with movement
+    //
+    BCC.Analytics.init('b89bfc691395249521077', {
+      environment: 'pub.bcclabs.com',
+      // movement: true,
+      performance: true,
+      page: 'my glorious test page',
+      tags: ['tag1', 'tag2']
+    });
+
+
+
+    // page level custom script...
+
+    $('#cartbutton').click(function () {
+      BCC.Analytics.track('added to cart');
+    });
+
+    $('#saveidentity').click(function () {
+      var userjson = {};
+      $('#userinfoform').serializeArray().forEach(function (item) {
+        userjson[item.name] = item.value;
+      });
+
+      BCC.Analytics.identify(userjson);
+    });
+
+    $('.btn-success').click(function (event) {
+      BCC.Analytics.track('success button click', { meaning: 42 }, event);
+    });
+
+    $('.track-hover').hover(function (e) {
+      BCC.Analytics.track('special hover state', { volume: 11 }, e);
+    });
+
+    </script>
+
+
+    <script src="gremlins.min.js"></script>
+    <script>
+    gremlins
+      .createHorde()
+      .after(function () {
+        window.location.href = '/';
+      })
+      .unleash()
+    ;
+    </script>
+
+  </body>
+</html>
