@@ -573,16 +573,58 @@
     </script>
 
 
-    <script src="gremlins.min.js"></script>
     <script>
+
+      var clickInterval = null;
+
+      function fireRandomClick (){
+        var ev, el, x, y;
+
+        x = $(window).width() * Math.random();
+        y = $(window).height() * Math.random();
+
+        ev = document.createEvent("MouseEvent");
+
+        el = document.elementFromPoint(x, y);
+
+        ev.initMouseEvent(
+            "click",
+            true /* bubble */, true /* cancelable */,
+            window, null,
+            x, y, x, y, /* coordinates */
+            false, false, false, false, /* modifier keys */
+            0 /*left*/, null
+        );
+
+        el.dispatchEvent(ev);
+      }
+
+      function begin () {
+        if (!clickInterval) {
+          clickInterval = setInterval(fireRandomClick, 250);
+        }
+      }
+
+      window.addEventListener('message', function (m) {
+        console.dir(m);
+        if ('message' === m.type && 'begin' === m.data) {
+          begin();
+        }
+      });
+
+    </script>
+
+    <!-- <script src="gremlins.min.js"></script> -->
+    <!-- <script>
     gremlins
       .createHorde()
+      .gremlin(gremlins.species.clicker().clickTypes(['click']))
       .after(function () {
-        window.location.href = '/';
+        // window.location.href = '/';
       })
       .unleash()
     ;
-    </script>
+    </script> -->
 
   </body>
 </html>
