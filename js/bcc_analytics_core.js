@@ -386,7 +386,11 @@
   function init (hook_id, options) {
     settings = options;
 
-    rest_input = protocol() + '://' + options.environment + '/da/' + hook_id;
+    if (options.environment) {
+      environment = options.environment;
+    }
+
+    rest_input = protocol() + '://' + environment + '/da/' + hook_id;
 
     user.id = readUid();
 
