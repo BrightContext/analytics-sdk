@@ -9,11 +9,11 @@
         b && b.length > 1 ? (c = b[1], c && (c = c.replace(/^\s+|\s+$/gm, "")), "" === c ? null : c) : null;
     }
     function c() {
-        var c = b(z);
+        var c = b(y);
         return c || (c = a(), d(c)), c;
     }
     function d(a) {
-        document.cookie = z + "=" + a;
+        document.cookie = y + "=" + a;
     }
     function e(a) {
         if (!a) return {};
@@ -30,7 +30,7 @@
         return a ? void 0 !== a.pageY ? a.pageY : void 0 !== a.clientY && document.documentElement ? a.clientY + document.documentElement.scrollTop : 0 : 0;
     }
     function h() {
-        return w.performance && window.performance ? window.performance : {};
+        return v.performance && window.performance ? window.performance : {};
     }
     function i(a, b, c) {
         a.addEventListener ? a.addEventListener(b, c, !1) : a.attachEvent && a.attachEvent("on" + b, c);
@@ -51,63 +51,42 @@
         return a && a.length && "href" in a[0] && "" !== a[0].href ? a[0].href : window.location.href;
     }
     function m() {
-        i(window, "load", function() {
-            C.canonical = l(), k(x, {
-                type: "pageload",
-                milestonename: "",
-                milestoneobj: {},
-                baseurl: C.canonical,
-                fullurl: window.location.href,
-                pagename: C.name,
-                tags: C.tags,
-                fullref: document.referrer || "",
-                userid: B.id,
-                userobj: B.details,
-                element: {},
-                mousex: 0,
-                mousey: 0,
-                scrollspeed: 0,
-                performobj: h()
-            });
-        });
-    }
-    function n() {
         var a = 0;
         i(window, "scroll", function() {
             a += 1;
         }), setInterval(function() {
-            A.scrollpersecond = a, k(x, {
+            z.scrollpersecond = a, k(w, {
                 type: "scroll",
                 milestonename: "",
                 milestoneobj: {},
-                baseurl: C.canonical,
+                baseurl: B.canonical,
                 fullurl: window.location.href,
-                pagename: C.name,
-                tags: C.tags,
+                pagename: B.name,
+                tags: B.tags,
                 fullref: document.referrer || "",
-                userid: B.id,
-                userobj: B.details,
+                userid: A.id,
+                userobj: A.details,
                 element: {},
                 mousex: 0,
                 mousey: 0,
-                scrollspeed: A.scrollpersecond,
+                scrollspeed: z.scrollpersecond,
                 performobj: h()
             }), a = 0;
         }, 1e3);
     }
-    function o() {
+    function n() {
         j("body", "click", function(a) {
-            k(x, {
+            k(w, {
                 type: "click",
                 milestonename: "",
                 milestoneobj: {},
-                baseurl: C.canonical,
+                baseurl: B.canonical,
                 fullurl: window.location.href,
-                pagename: C.name,
-                tags: C.tags,
+                pagename: B.name,
+                tags: B.tags,
                 fullref: document.referrer || "",
-                userid: B.id,
-                userobj: B.details,
+                userid: A.id,
+                userobj: A.details,
                 element: e(a),
                 mousex: f(a),
                 mousey: g(a),
@@ -116,32 +95,50 @@
             });
         });
     }
-    function p() {
+    function o() {
         var a, b;
         j("body", "click", function(c) {
             c.target && (a = c.target.getAttribute("data-bcc-milestone-name"), b = c.target.getAttribute("data-bcc-milestone-details") || {}, 
-            a && s(a, b, c));
+            a && r(a, b, c));
         });
     }
-    function q() {
+    function p() {
         return window.location.href.replace(/:\/\/.*/, "");
     }
-    function r(a, b) {
-        w = b, x = q() + "://" + b.environment + "/da/" + a, B.id = c(), m(), o(), p(), 
-        b && (b.movement && n(), b.environment && (y = b.environment), u(b.page), v(b.tags));
+    function q(a, b) {
+        v = b, b.environment && (x = b.environment), w = p() + "://" + x + "/da/" + a, i(document, "DOMContentLoaded", function() {
+            B.canonical = l(), A.id = c(), n(), o(), b && (b.movement && m(), b.environment && (x = b.environment), 
+            t(b.page), u(b.tags), k(w, {
+                type: "pageload",
+                milestonename: "",
+                milestoneobj: {},
+                baseurl: B.canonical,
+                fullurl: window.location.href,
+                pagename: B.name,
+                tags: B.tags,
+                fullref: document.referrer || "",
+                userid: A.id,
+                userobj: A.details,
+                element: {},
+                mousex: 0,
+                mousey: 0,
+                scrollspeed: 0,
+                performobj: h()
+            }));
+        });
     }
-    function s(a, b, c) {
-        k(x, {
+    function r(a, b, c) {
+        k(w, {
             type: "milestone",
             milestonename: a,
             milestoneobj: b || {},
-            baseurl: C.canonical,
+            baseurl: B.canonical,
             fullurl: window.location.href,
-            pagename: C.name,
-            tags: C.tags,
+            pagename: B.name,
+            tags: B.tags,
             fullref: document.referrer || "",
-            userid: B.id,
-            userobj: B.details,
+            userid: A.id,
+            userobj: A.details,
             element: e(c),
             mousex: f(c),
             mousey: g(c),
@@ -149,19 +146,19 @@
             performobj: h()
         });
     }
+    function s(a) {
+        return void 0 !== a && (A.details = a), A.details;
+    }
     function t(a) {
-        return void 0 !== a && (B.details = a), B.details;
+        return void 0 !== a && (B.name = a || ""), B.name;
     }
     function u(a) {
-        return void 0 !== a && (C.name = a || ""), C.name;
+        return void 0 !== a && (B.tags = a || []), B.tags;
     }
-    function v(a) {
-        return void 0 !== a && (C.tags = a || []), C.tags;
-    }
-    var w, x, y = "pub.brightcontext.com", z = "bcau", A = {
+    var v, w, x = "pub.brightcontext.com", y = "bcau", z = {
         url: "",
         scrollpersecond: 0
-    }, B = {}, C = {};
+    }, A = {}, B = {};
     document.querySelectorAll || (document.querySelectorAll = function(a) {
         var b, c = document.createElement("style"), d = [];
         for (document.documentElement.firstChild.appendChild(c), document._qsa = [], c.styleSheet.cssText = a + "{x-qsa:expression(document._qsa && document._qsa.push(this))}", 
@@ -176,6 +173,6 @@
         e.push((f ? "" : '"' + c + '":') + String(d)));
         return (f ? "[" : "{") + String(e) + (f ? "]" : "}");
     }), window.BCC || (window.BCC = {}), window.BCC.Analytics || (window.BCC.Analytics = {}), 
-    window.BCC.Analytics.init = r, window.BCC.Analytics.track = s, window.BCC.Analytics.identify = t, 
-    window.BCC.Analytics.page = u, window.BCC.Analytics.tags = v;
+    window.BCC.Analytics.init = q, window.BCC.Analytics.track = r, window.BCC.Analytics.identify = s, 
+    window.BCC.Analytics.page = t, window.BCC.Analytics.tags = u;
 }();

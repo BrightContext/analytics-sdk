@@ -281,30 +281,6 @@
     ;
   }
 
-  function bindpageload () {
-    hook(window, 'load', function () {
-      page_info.canonical = canon();
-
-      post(rest_input, {
-        type: 'pageload',
-        milestonename: '',
-        milestoneobj: {},
-        baseurl: page_info.canonical,
-        fullurl: window.location.href,
-        pagename: page_info.name,
-        tags: page_info.tags,
-        fullref: document.referrer || '',
-        userid: user.id,
-        userobj: user.details,
-        element: {},
-        mousex: 0,
-        mousey: 0,
-        scrollspeed: 0,
-        performobj: perf()
-      });
-    });
-  }
-
   function bindscroll () {
     var scrollAccumulation = 0;
 
@@ -392,24 +368,45 @@
 
     rest_input = protocol() + '://' + environment + '/da/' + hook_id;
 
-    user.id = readUid();
+    hook(document, 'DOMContentLoaded', function () {
+      page_info.canonical = canon();
 
-    bindpageload();
-    bindclicks();
-    bindmilestones();
+      user.id = readUid();
 
-    if (options) {
-      if (options.movement) {
-        bindscroll();
+      bindclicks();
+      bindmilestones();
+
+      if (options) {
+        if (options.movement) {
+          bindscroll();
+        }
+
+        if (options.environment) {
+          environment = options.environment;
+        }
+
+        page(options.page);
+        tags(options.tags);
+
+        post(rest_input, {
+          type: 'pageload',
+          milestonename: '',
+          milestoneobj: {},
+          baseurl: page_info.canonical,
+          fullurl: window.location.href,
+          pagename: page_info.name,
+          tags: page_info.tags,
+          fullref: document.referrer || '',
+          userid: user.id,
+          userobj: user.details,
+          element: {},
+          mousex: 0,
+          mousey: 0,
+          scrollspeed: 0,
+          performobj: perf()
+        });
       }
-
-      if (options.environment) {
-        environment = options.environment;
-      }
-
-      page(options.page);
-      tags(options.tags);
-    }
+    });
   }
 
   function track (name, details, event) {
