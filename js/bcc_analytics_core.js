@@ -19,7 +19,8 @@
     rest_input,
     current_stats = {
       url: '',
-      scrollpersecond: 0
+      prevscroll: 0,
+      scroll: 0
     },
     user = {},
     page_info = {}
@@ -289,29 +290,38 @@
     });
 
     setInterval(function () {
-      current_stats.scrollpersecond = scrollAccumulation;
+      current_stats.scroll = scrollAccumulation;
 
-      post(rest_input, {
-        type: 'scroll',
-        milestonename: '',
-        milestoneobj: {},
-        baseurl: page_info.canonical,
-        fullurl: window.location.href,
-        pagename: page_info.name,
-        tags: page_info.tags,
-        fullref: document.referrer || '',
-        userid: user.id,
-        userobj: user.details,
-        element: {},
-        mousex: 0,
-        mousey: 0,
-        scrollspeed: current_stats.scrollpersecond,
-        performobj: perf()
-      });
+      var send_scroll_event = (
+        (0 !== current_stats.scroll)
+        ||
+        ((0 === current_stats.scroll) && (0 !== current_stats.prevscroll))
+      );
 
+      if (send_scroll_event) {
+        post(rest_input, {
+          type: 'scroll',
+          milestonename: '',
+          milestoneobj: {},
+          baseurl: page_info.canonical,
+          fullurl: window.location.href,
+          pagename: page_info.name,
+          tags: page_info.tags,
+          fullref: document.referrer || '',
+          userid: user.id,
+          userobj: user.details,
+          element: {},
+          mousex: 0,
+          mousey: 0,
+          scrollspeed: current_stats.scroll,
+          performobj: perf()
+        });
+      }
+
+      current_stats.prevscroll = scrollAccumulation;
       scrollAccumulation = 0;
 
-    }, 1e3);
+    }, 5e3);
   }
 
   function bindclicks () {

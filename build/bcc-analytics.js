@@ -55,7 +55,9 @@
         i(window, "scroll", function() {
             a += 1;
         }), setInterval(function() {
-            z.scrollpersecond = a, k(w, {
+            z.scroll = a;
+            var b = 0 !== z.scroll || 0 === z.scroll && 0 !== z.prevscroll;
+            b && k(w, {
                 type: "scroll",
                 milestonename: "",
                 milestoneobj: {},
@@ -69,10 +71,10 @@
                 element: {},
                 mousex: 0,
                 mousey: 0,
-                scrollspeed: z.scrollpersecond,
+                scrollspeed: z.scroll,
                 performobj: h()
-            }), a = 0;
-        }, 1e3);
+            }), z.prevscroll = a, a = 0;
+        }, 5e3);
     }
     function n() {
         j("body", "click", function(a) {
@@ -157,7 +159,8 @@
     }
     var v, w, x = "pub.brightcontext.com", y = "bcau", z = {
         url: "",
-        scrollpersecond: 0
+        prevscroll: 0,
+        scroll: 0
     }, A = {}, B = {};
     document.querySelectorAll || (document.querySelectorAll = function(a) {
         var b, c = document.createElement("style"), d = [];
