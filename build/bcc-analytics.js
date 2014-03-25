@@ -9,11 +9,11 @@
         b && b.length > 1 ? (c = b[1], c && (c = c.replace(/^\s+|\s+$/gm, "")), "" === c ? null : c) : null;
     }
     function c() {
-        var c = b(K);
+        var c = b(L);
         return c || (c = a(), d(c)), c;
     }
     function d(a) {
-        document.cookie = K + "=" + a;
+        document.cookie = L + "=" + a;
     }
     function e(a, b) {
         var c, d, e = -1, f = a.nodeName.toLowerCase();
@@ -41,7 +41,7 @@
         return a ? void 0 !== a.pageY ? a.pageY : void 0 !== a.clientY && document.documentElement ? a.clientY + document.documentElement.scrollTop : 0 : 0;
     }
     function j() {
-        return H.performance && window.performance ? window.performance : {};
+        return I.performance && window.performance ? window.performance : {};
     }
     function k(a, b, c) {
         a.addEventListener ? a.addEventListener(b, c, !1) : a.attachEvent && a.attachEvent("on" + b, c);
@@ -99,7 +99,32 @@
     function x() {
         return r("body", "scrollLeft") + window.innerWidth;
     }
-    function y() {
+    function y(a) {
+        return {
+            type: a,
+            milestonename: "",
+            milestoneobj: {},
+            baseurl: N.canonical,
+            fullurl: window.location.href,
+            pagename: N.name,
+            tags: N.tags,
+            fullref: p(),
+            userid: M.id,
+            userobj: M.details,
+            element: {},
+            mousex: 0,
+            mousey: 0,
+            pagetitle: q(),
+            pageheight: s(),
+            pagewidth: t(),
+            viewabletop: u(),
+            viewablebottom: v(),
+            viewableleft: w(),
+            viewableright: x(),
+            performobj: j()
+        };
+    }
+    function z() {
         var a = {
             pageheight: 0,
             pagewidth: 0,
@@ -117,108 +142,43 @@
                 viewableleft: w(),
                 viewableright: x()
             }, c = b.pageheight !== a.pageheight || b.pagewidth !== a.pagewidth || b.viewabletop !== a.viewabletop || b.viewablebottom !== a.viewablebottom || b.viewableleft !== a.viewableleft || b.viewableright !== a.viewableright;
-            c && n(I, {
-                type: "position",
-                milestonename: "",
-                milestoneobj: {},
-                baseurl: M.canonical,
-                fullurl: window.location.href,
-                pagename: M.name,
-                tags: M.tags,
-                fullref: p(),
-                userid: L.id,
-                userobj: L.details,
-                element: {},
-                mousex: 0,
-                mousey: 0,
-                pagetitle: q(),
-                pageheight: s(),
-                pagewidth: t(),
-                viewabletop: u(),
-                viewablebottom: v(),
-                viewableleft: w(),
-                viewableright: x(),
-                performobj: j()
-            }), a = b;
+            c && n(J, y("position")), a = b;
         }, 5e3);
     }
-    function z() {
-        l("body", "click", function(a) {
-            n(I, {
-                type: "click",
-                milestonename: "",
-                milestoneobj: {},
-                baseurl: M.canonical,
-                fullurl: window.location.href,
-                pagename: M.name,
-                tags: M.tags,
-                fullref: p(),
-                userid: L.id,
-                userobj: L.details,
-                element: g(a),
-                mousex: h(a),
-                mousey: i(a),
-                pagetitle: q(),
-                pageheight: s(),
-                pagewidth: t(),
-                viewabletop: u(),
-                viewablebottom: v(),
-                viewableleft: w(),
-                viewableright: x(),
-                performobj: j()
-            });
-        });
-    }
     function A() {
-        var a, b;
-        l("body", "click", function(c) {
-            c.target && (a = c.target.getAttribute("data-bcc-milestone-name"), b = c.target.getAttribute("data-bcc-milestone-details") || {}, 
-            a && D(a, b, c));
+        l("body", "click", function(a) {
+            var b = y("click");
+            b.element = g(a), b.mousex = h(a), b.mousey = i(a), n(J, b);
         });
     }
     function B() {
-        return window.location.href.replace(/:\/\/.*/, "");
-    }
-    function C(a, b) {
-        H = b, b.environment && (J = b.environment), I = B() + "://" + J + "/da/" + a, k(document, "DOMContentLoaded", function() {
-            M.canonical = o(), L.id = c(), z(), A(), b && (b.movement && y(), b.environment && (J = b.environment), 
-            F(b.page), G(b.tags), n(I, {
-                type: "pageload",
-                milestonename: "",
-                milestoneobj: {},
-                baseurl: M.canonical,
-                fullurl: window.location.href,
-                pagename: M.name,
-                tags: M.tags,
-                fullref: p(),
-                userid: L.id,
-                userobj: L.details,
-                element: {},
-                mousex: 0,
-                mousey: 0,
-                pagetitle: q(),
-                pageheight: s(),
-                pagewidth: t(),
-                viewabletop: u(),
-                viewablebottom: v(),
-                viewableleft: w(),
-                viewableright: x(),
-                performobj: j()
-            }));
+        var a, b;
+        l("body", "click", function(c) {
+            c.target && (a = c.target.getAttribute("data-bcc-milestone-name"), b = c.target.getAttribute("data-bcc-milestone-details") || {}, 
+            a && E(a, b, c));
         });
     }
-    function D(a, b, c) {
-        n(I, {
+    function C() {
+        return window.location.href.replace(/:\/\/.*/, "");
+    }
+    function D(a, b) {
+        I = b, b.environment && (K = b.environment), J = C() + "://" + K + "/da/" + a, k(document, "DOMContentLoaded", function() {
+            N.canonical = o(), M.id = c(), A(), B(), b && (b.movement && z(), b.environment && (K = b.environment), 
+            G(b.page), H(b.tags), n(J, y("pageload")));
+        });
+    }
+    function E(a, b, c) {
+        n(J, {
             type: "milestone",
             milestonename: a,
             milestoneobj: b || {},
-            baseurl: M.canonical,
+            baseurl: N.canonical,
             fullurl: window.location.href,
-            pagename: M.name,
-            tags: M.tags,
+            pagename: N.name,
+            tags: N.tags,
             fullref: p(),
-            userid: L.id,
-            userobj: L.details,
+            userid: M.id,
+            userobj: M.details,
             element: g(c),
             mousex: h(c),
             mousey: i(c),
@@ -232,16 +192,16 @@
             performobj: j()
         });
     }
-    function E(a) {
-        return void 0 !== a && (L.details = a), L.details;
-    }
     function F(a) {
-        return void 0 !== a && (M.name = a || ""), M.name;
+        return void 0 !== a && (M.details = a), M.details;
     }
     function G(a) {
-        return void 0 !== a && (M.tags = a || []), M.tags;
+        return void 0 !== a && (N.name = a || ""), N.name;
     }
-    var H, I, J = "pub.brightcontext.com", K = "bcau", L = {}, M = {};
+    function H(a) {
+        return void 0 !== a && (N.tags = a || []), N.tags;
+    }
+    var I, J, K = "pub.brightcontext.com", L = "bcau", M = {}, N = {};
     document.querySelectorAll || (document.querySelectorAll = function(a) {
         var b, c = document.createElement("style"), d = [];
         for (document.documentElement.firstChild.appendChild(c), document._qsa = [], c.styleSheet.cssText = a + "{x-qsa:expression(document._qsa && document._qsa.push(this))}", 
@@ -256,6 +216,6 @@
         e.push((f ? "" : '"' + c + '":') + String(d)));
         return (f ? "[" : "{") + String(e) + (f ? "]" : "}");
     }), window.BCC || (window.BCC = {}), window.BCC.Analytics || (window.BCC.Analytics = {}), 
-    window.BCC.Analytics.init = C, window.BCC.Analytics.track = D, window.BCC.Analytics.identify = E, 
-    window.BCC.Analytics.page = F, window.BCC.Analytics.tags = G;
+    window.BCC.Analytics.init = D, window.BCC.Analytics.track = E, window.BCC.Analytics.identify = F, 
+    window.BCC.Analytics.page = G, window.BCC.Analytics.tags = H;
 }();

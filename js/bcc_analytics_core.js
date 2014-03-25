@@ -396,6 +396,32 @@
   // messages
   ////////////////////////////////////////////////////////////////////////////////
 
+  function message (t) {
+    return {
+      type: t,
+      milestonename: '',
+      milestoneobj: {},
+      baseurl: page_info.canonical,
+      fullurl: window.location.href,
+      pagename: page_info.name,
+      tags: page_info.tags,
+      fullref: pageref(),
+      userid: user.id,
+      userobj: user.details,
+      element: {},
+      mousex: 0,
+      mousey: 0,
+      pagetitle: title(),
+      pageheight: pageheight(),
+      pagewidth: pagewidth(),
+      viewabletop: viewtop(),
+      viewablebottom: viewbottom(),
+      viewableleft: viewleft(),
+      viewableright: viewright(),
+      performobj: perf()
+    };
+  }
+
   function bindmovement () {
     var prev_pos = {
       pageheight: 0,
@@ -432,29 +458,7 @@
       ;
 
       if (send_position_event) {
-        post(rest_input, {
-          type: 'position',
-          milestonename: '',
-          milestoneobj: {},
-          baseurl: page_info.canonical,
-          fullurl: window.location.href,
-          pagename: page_info.name,
-          tags: page_info.tags,
-          fullref: pageref(),
-          userid: user.id,
-          userobj: user.details,
-          element: {},
-          mousex: 0,
-          mousey: 0,
-          pagetitle: title(),
-          pageheight: pageheight(),
-          pagewidth: pagewidth(),
-          viewabletop: viewtop(),
-          viewablebottom: viewbottom(),
-          viewableleft: viewleft(),
-          viewableright: viewright(),
-          performobj: perf()
-        });
+        post(rest_input, message('position'));
       }
 
       prev_pos = current_pos;
@@ -464,29 +468,12 @@
 
   function bindclicks () {
     bind('body', 'click', function (event) {
-      post(rest_input, {
-        type: 'click',
-        milestonename: '',
-        milestoneobj: {},
-        baseurl: page_info.canonical,
-        fullurl: window.location.href,
-        pagename: page_info.name,
-        tags: page_info.tags,
-        fullref: pageref(),
-        userid: user.id,
-        userobj: user.details,
-        element: elementMap(event),
-        mousex: mouseX(event),
-        mousey: mouseY(event),
-        pagetitle: title(),
-        pageheight: pageheight(),
-        pagewidth: pagewidth(),
-        viewabletop: viewtop(),
-        viewablebottom: viewbottom(),
-        viewableleft: viewleft(),
-        viewableright: viewright(),
-        performobj: perf()
-      });
+      var m = message('click');
+      m.element = elementMap(event);
+      m.mousex = mouseX(event);
+      m.mousey = mouseY(event);
+
+      post(rest_input, m);
     });
   }
 
@@ -542,29 +529,7 @@
         page(options.page);
         tags(options.tags);
 
-        post(rest_input, {
-          type: 'pageload',
-          milestonename: '',
-          milestoneobj: {},
-          baseurl: page_info.canonical,
-          fullurl: window.location.href,
-          pagename: page_info.name,
-          tags: page_info.tags,
-          fullref: pageref(),
-          userid: user.id,
-          userobj: user.details,
-          element: {},
-          mousex: 0,
-          mousey: 0,
-          pagetitle: title(),
-          pageheight: pageheight(),
-          pagewidth: pagewidth(),
-          viewabletop: viewtop(),
-          viewablebottom: viewbottom(),
-          viewableleft: viewleft(),
-          viewableright: viewright(),
-          performobj: perf()
-        });
+        post(rest_input, message('pageload'));
       }
     });
   }
