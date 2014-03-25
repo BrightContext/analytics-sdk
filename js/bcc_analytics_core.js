@@ -18,11 +18,6 @@
     environment = 'pub.brightcontext.com',
     user_id_cookie_name = 'bcau',
     rest_input,
-    current_stats = {
-      url: '',
-      prevscroll: 0,
-      scroll: 0
-    },
     user = {},
     page_info = {}
   ;
@@ -310,15 +305,10 @@
     ;
   }
 
-  function bindscroll () {
-    var scrollAccumulation = 0;
   function pageref () {
     return document.referrer || '';
   }
 
-    hook(window, 'scroll', function (/*scrollevent*/) {
-      scrollAccumulation += 1;
-    });
   function title () {
     var element = document.querySelectorAll('title');
     return (element && element.length)
@@ -327,18 +317,76 @@
     ;
   }
 
+  function select (selector, property_name) {
+    var body = document.querySelectorAll(selector);
+    return (body && body.length && (property_name in body[0]))
+      ? body[0][property_name]
+      : 0
+    ;
+  }
+
+  function pageheight () {
+    return select('body', 'scrollHeight');
+  }
+
+  function pagewidth () {
+    return select('body', 'scrollWidth');
+  }
+
+  function viewtop () {
+    return select('body', 'scrollTop');
+  }
+
+  function viewbottom () {
+    return select('body', 'scrollTop') + window.innerHeight;
+  }
+
+  function viewleft () {
+    return select('body', 'scrollLeft');
+  }
+
+  function viewright () {
+    return select('body', 'scrollLeft') + window.innerWidth;
+  }
+
+  function bindmovement () {
+    var prev_pos = {
+      pageheight: 0,
+      pagewidth: 0,
+      viewabletop: 0,
+      viewablebottom: 0,
+      viewableleft: 0,
+      viewableright: 0
+    };
+
     setInterval(function () {
-      current_stats.scroll = scrollAccumulation;
+      var
+        current_pos = {
+          pageheight: pageheight(),
+          pagewidth: pagewidth(),
+          viewabletop: viewtop(),
+          viewablebottom: viewbottom(),
+          viewableleft: viewleft(),
+          viewableright: viewright()
+        },
+        send_position_event = (
+          (current_pos.pageheight !== prev_pos.pageheight)
+          ||
+          (current_pos.pagewidth !== prev_pos.pagewidth)
+          ||
+          (current_pos.viewabletop !== prev_pos.viewabletop)
+          ||
+          (current_pos.viewablebottom !== prev_pos.viewablebottom)
+          ||
+          (current_pos.viewableleft !== prev_pos.viewableleft)
+          ||
+          (current_pos.viewableright !== prev_pos.viewableright)
+        )
+      ;
 
-      var send_scroll_event = (
-        (0 !== current_stats.scroll)
-        ||
-        ((0 === current_stats.scroll) && (0 !== current_stats.prevscroll))
-      );
-
-      if (send_scroll_event) {
+      if (send_position_event) {
         post(rest_input, {
-          type: 'scroll',
+          type: 'position',
           milestonename: '',
           milestoneobj: {},
           baseurl: page_info.canonical,
@@ -351,14 +399,18 @@
           element: {},
           mousex: 0,
           mousey: 0,
-          scrollspeed: current_stats.scroll,
           pagetitle: title(),
+          pageheight: pageheight(),
+          pagewidth: pagewidth(),
+          viewabletop: viewtop(),
+          viewablebottom: viewbottom(),
+          viewableleft: viewleft(),
+          viewableright: viewright(),
           performobj: perf()
         });
       }
 
-      current_stats.prevscroll = scrollAccumulation;
-      scrollAccumulation = 0;
+      prev_pos = current_pos;
 
     }, 5e3);
   }
@@ -379,8 +431,13 @@
         element: elementMap(event),
         mousex: mouseX(event),
         mousey: mouseY(event),
-        scrollspeed: 0,
         pagetitle: title(),
+        pageheight: pageheight(),
+        pagewidth: pagewidth(),
+        viewabletop: viewtop(),
+        viewablebottom: viewbottom(),
+        viewableleft: viewleft(),
+        viewableright: viewright(),
         performobj: perf()
       });
     });
@@ -428,7 +485,7 @@
 
       if (options) {
         if (options.movement) {
-          bindscroll();
+          bindmovement();
         }
 
         if (options.environment) {
@@ -452,8 +509,13 @@
           element: {},
           mousex: 0,
           mousey: 0,
-          scrollspeed: 0,
           pagetitle: title(),
+          pageheight: pageheight(),
+          pagewidth: pagewidth(),
+          viewabletop: viewtop(),
+          viewablebottom: viewbottom(),
+          viewableleft: viewleft(),
+          viewableright: viewright(),
           performobj: perf()
         });
       }
@@ -477,8 +539,13 @@
       element: elementMap(event),
       mousex: mouseX(event),
       mousey: mouseY(event),
-      scrollspeed: 0,
       pagetitle: title(),
+      pageheight: pageheight(),
+      pagewidth: pagewidth(),
+      viewabletop: viewtop(),
+      viewablebottom: viewbottom(),
+      viewableleft: viewleft(),
+      viewableright: viewright(),
       performobj: perf()
     });
   }
