@@ -2,7 +2,6 @@
   document,
   window,
   JSON,
-  ActiveXObject,
   XMLHttpRequest,
   XDomainRequest,
   setInterval,
@@ -159,26 +158,70 @@
   // element parsing
   ////////////////////////////////////////////////////////////////////////////////
 
+
+  function nodeindex(element, array) {
+    var
+      i,
+      found = -1,
+      element_name = element.nodeName.toLowerCase(),
+      matched
+    ;
+
+    for (i = 0; i !== array.length; ++i) {
+      matched = array[i];
+      if (matched.nodeName.toLowerCase() === element_name) {
+        ++found;
+
+
+        if (matched === element) {
+          return found;
+        }
+      }
+    }
+
+    return -1;
+  }
+
+  function xpath(element, suffix) {
+    var parent, child_index, node_name;
+
+    suffix = suffix || '';
+    parent = element.parentElement;
+
+    if (parent) {
+      node_name = element.nodeName.toLowerCase();
+      child_index = nodeindex(element, parent.children) + 1;
+      return xpath(parent, '/' + node_name + '[' + child_index + ']' + suffix);
+    } else {
+      return '//html[1]' + suffix;
+    }
+  }
+
   function elementMap (event) {
     if (!event) {
       return {};
     }
 
-    var o = {}, e, i, a, k, v;
+    var o = {}, src;
 
-    e = event.target;
-    o.tagName = e.tagName;
-    o.offsetLeft = e.offsetLeft;
-    o.offsetTop = e.offsetTop;
+    src = event.srcElement || event.originalTarget || event.target;
 
-    for (i in e.attributes) {
-      if (i) {
-        a = e.attributes[i];
-        k = 'attr'+a.name;
-        v = a.value;
-        o[k] = v;
-      }
-    }
+    o.tagName = src.nodeName.toLowerCase();
+
+    o.srcPath = xpath(src);
+    o.srcX = src.offsetLeft;
+    o.srcY = src.offsetTop;
+    o.srcWidth = src.offsetWidth;
+    o.srcHeight = src.offsetHeight;
+
+    o.pageX = event.pageX;
+    o.pageY = event.pageY;
+
+    o.screenX = event.screenX;
+    o.screenY = event.screenY;
+
+    o.clientX = event.clientX;
+    o.clientY = event.clientY;
 
     return o;
   }
@@ -348,6 +391,10 @@
   function viewright () {
     return select('body', 'scrollLeft') + window.innerWidth;
   }
+
+  ////////////////////////////////////////////////////////////////////////////////
+  // messages
+  ////////////////////////////////////////////////////////////////////////////////
 
   function bindmovement () {
     var prev_pos = {
