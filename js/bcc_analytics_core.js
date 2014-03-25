@@ -192,6 +192,7 @@
       if (undefined !== event.pageX) {
         return event.pageX;
       } else if (undefined !== event.clientX && document.documentElement) {
+        // http://msdn.microsoft.com/en-us/library/ie/ff974655(v=vs.85).aspx
         return event.clientX + document.documentElement.scrollLeft;
       } else {
         return 0;
@@ -206,6 +207,7 @@
       if (undefined !== event.pageY) {
         return event.pageY;
       } else if (undefined !== event.clientY && document.documentElement) {
+        // http://msdn.microsoft.com/en-us/library/ie/ff974656(v=vs.85).aspx
         return event.clientY + document.documentElement.scrollTop;
       } else {
         return 0;
