@@ -312,6 +312,9 @@
 
   function bindscroll () {
     var scrollAccumulation = 0;
+  function pageref () {
+    return document.referrer || '';
+  }
 
     hook(window, 'scroll', function (/*scrollevent*/) {
       scrollAccumulation += 1;
@@ -335,7 +338,7 @@
           fullurl: window.location.href,
           pagename: page_info.name,
           tags: page_info.tags,
-          fullref: document.referrer || '',
+          fullref: pageref(),
           userid: user.id,
           userobj: user.details,
           element: {},
@@ -362,7 +365,7 @@
         fullurl: window.location.href,
         pagename: page_info.name,
         tags: page_info.tags,
-        fullref: document.referrer || '',
+        fullref: pageref(),
         userid: user.id,
         userobj: user.details,
         element: elementMap(event),
@@ -434,7 +437,7 @@
           fullurl: window.location.href,
           pagename: page_info.name,
           tags: page_info.tags,
-          fullref: document.referrer || '',
+          fullref: pageref(),
           userid: user.id,
           userobj: user.details,
           element: {},
@@ -458,7 +461,7 @@
       fullurl: window.location.href,
       pagename: page_info.name,
       tags: page_info.tags,
-      fullref: document.referrer || '',
+      fullref: pageref(),
       userid: user.id,
       userobj: user.details,
       element: elementMap(event),
