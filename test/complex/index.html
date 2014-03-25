@@ -525,7 +525,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
 
-    <script src="//static.bcclabs.com/analytics-sdk/bcc-analytics.min.js"></script>
+    <script src="/build/bcc-analytics.min.js"></script>
 
     <script>
 
@@ -536,7 +536,6 @@
       page: 'my glorious test page',
       tags: ['tag1', 'tag2']
     });
-
 
 
     // page level custom script...
@@ -563,60 +562,6 @@
     });
 
     </script>
-
-
-    <script>
-
-      var clickInterval = null;
-
-      function fireRandomClick (){
-        var ev, el, x, y;
-
-        x = $(window).width() * Math.random();
-        y = $(window).height() * Math.random();
-
-        ev = document.createEvent("MouseEvent");
-
-        el = document.elementFromPoint(x, y);
-
-        ev.initMouseEvent(
-            "click",
-            true /* bubble */, true /* cancelable */,
-            window, null,
-            x, y, x, y, /* coordinates */
-            false, false, false, false, /* modifier keys */
-            0 /*left*/, null
-        );
-
-        el.dispatchEvent(ev);
-      }
-
-      function begin () {
-        if (!clickInterval) {
-          clickInterval = setInterval(fireRandomClick, 250);
-        }
-      }
-
-      window.addEventListener('message', function (m) {
-        console.dir(m);
-        if ('message' === m.type && 'begin' === m.data) {
-          begin();
-        }
-      });
-
-    </script>
-
-    <!-- <script src="gremlins.min.js"></script> -->
-    <!-- <script>
-    gremlins
-      .createHorde()
-      .gremlin(gremlins.species.clicker().clickTypes(['click']))
-      .after(function () {
-        // window.location.href = '/';
-      })
-      .unleash()
-    ;
-    </script> -->
 
   </body>
 </html>
