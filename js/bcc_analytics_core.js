@@ -4,6 +4,7 @@
   JSON,
   ActiveXObject,
   XMLHttpRequest,
+  XDomainRequest,
   setInterval,
   console
 */
@@ -243,23 +244,48 @@
     }
   }
 
+  function req (method, url) {
+    try {
+
+      var xhr = new XMLHttpRequest();
+      if ('withCredentials' in xhr) {
+        xhr.open(method, url, true);
+      } else if (typeof XDomainRequest !== 'undefined') {
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+      } else {
+        xhr = null;
+      }
+
+      if (xhr) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
+
+      return xhr;
+    } catch (ex) {
+      console.log(ex);
+      return null;
+    }
+  }
+
   function post (url, payload) {
     if (!url) {
       return;
     }
 
     try {
-      var post_body, xhr = (window.ActiveXObject)
-        ? (new ActiveXObject('Microsoft.XMLHTTP'))
-        : (new XMLHttpRequest())
+      var
+        post_body = JSON.stringify(payload),
+        xhr = req('POST', url)
       ;
 
-      post_body = JSON.stringify(payload);
-      // console.log(post_body);
+      if (xhr) {
+        console.log(post_body);
+        xhr.send(post_body);
+      } else {
+        console.error('cors not available');
+      }
 
-      xhr.open('POST', url, true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(post_body);
     } catch (ex) {
       // if (console && console.error) {
       //   console.error(ex);
