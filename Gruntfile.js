@@ -51,6 +51,16 @@ grunt.initConfig({
     }
   },
 
+  connect: {
+    server: {
+      options: {
+        port: 9001,
+        useAvailablePort: true,
+        keepalive: true
+      }
+    }
+  },
+
   watch: {
     scripts: {
       files: 'js/**/*.js',
@@ -67,5 +77,6 @@ grunt.initConfig({
 grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.loadNpmTasks('grunt-contrib-watch');
+grunt.loadNpmTasks('grunt-contrib-connect');
 
 grunt.registerTask('default', ['uglify']);
