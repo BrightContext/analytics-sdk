@@ -319,6 +319,13 @@
     hook(window, 'scroll', function (/*scrollevent*/) {
       scrollAccumulation += 1;
     });
+  function title () {
+    var element = document.querySelectorAll('title');
+    return (element && element.length)
+      ? element[0].innerHTML
+      : ''
+    ;
+  }
 
     setInterval(function () {
       current_stats.scroll = scrollAccumulation;
@@ -345,6 +352,7 @@
           mousex: 0,
           mousey: 0,
           scrollspeed: current_stats.scroll,
+          pagetitle: title(),
           performobj: perf()
         });
       }
@@ -372,6 +380,7 @@
         mousex: mouseX(event),
         mousey: mouseY(event),
         scrollspeed: 0,
+        pagetitle: title(),
         performobj: perf()
       });
     });
@@ -444,6 +453,7 @@
           mousex: 0,
           mousey: 0,
           scrollspeed: 0,
+          pagetitle: title(),
           performobj: perf()
         });
       }
@@ -468,6 +478,7 @@
       mousex: mouseX(event),
       mousey: mouseY(event),
       scrollspeed: 0,
+      pagetitle: title(),
       performobj: perf()
     });
   }
